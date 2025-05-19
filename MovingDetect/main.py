@@ -123,12 +123,14 @@ async def create_upload_file(uploaded_file: UploadFile = File(...)):
     """
     # 임시 파일로 저장하여 cv2에서 처리할 수 있도록 함
     # tempfile.NamedTemporaryFile은 컨텍스트를 벗어나면 자동으로 삭제됨
+    tmp_path = None # tmp_path 초기화
     try:
         with tempfile.NamedTemporaryFile(delete=False, suffix=os.path.splitext(uploaded_file.filename)[1]) as tmp:
             shutil.copyfileobj(uploaded_file.file, tmp)
             tmp_path = tmp.name # 임시 파일 경로 저장
     finally:
-        uploaded_file.file.close() # 업로드된 파일 객체 닫기
+        if uploaded_file.file: # 파일 객체가 존재하는지 확인 후 닫기
+            uploaded_file.file.close() # 업로드된 파일 객체 닫기
 
     try:
         # 비디오 처리 함수 호출
@@ -143,11 +145,11 @@ async def create_upload_file(uploaded_file: UploadFile = File(...)):
         raise HTTPException(status_code=500, detail=f"비디오 처리 중 오류 발생: {str(e)}")
     finally:
         # 임시 파일 삭제
-        if os.path.exists(tmp_path):
+        if tmp_path and os.path.exists(tmp_path): # tmp_path가 None이 아니고 파일이 존재할 경우
             os.remove(tmp_path)
             
     return {"timeStamps": time_stamps}
 
 # FastAPI 서버 실행 방법 (터미널에서):
 # uvicorn main:app --reload
-# 예: uvicorn main:app --host 0.0.0.0 --port 8000 --reload 
+# 예: uvicorn main:app --host 0.0.0.0 --port 3000 --reload 
