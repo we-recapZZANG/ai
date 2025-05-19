@@ -1,26 +1,26 @@
 import cv2
 import time
 import numpy as np
-import torch # torch는 YOLO 모델 사용 시 내부적으로 필요할 수 있습니다.
+import torch 
 from ultralytics import YOLO
 import os
 from datetime import datetime
-import tempfile # 임시 파일 생성을 위해 추가
-import shutil # 파일 복사를 위해 추가
+import tempfile 
+import shutil 
 from fastapi import FastAPI, File, UploadFile, HTTPException
-from typing import List, Dict # 타입 힌팅을 위해 추가
+from typing import List, Dict 
 
 # FastAPI 애플리케이션 인스턴스 생성
 app = FastAPI()
 
 # --- 설정값 ---
-# 실제 운영 환경에서는 환경 변수나 설정 파일을 사용하는 것이 좋습니다.
-MODEL_PATH_PRIMARY = "/mnt/hdd1/users/20011959_son/Capstone/proneDetect/runs/detect/train17/weights/best.pt"
+
+MODEL_PATH_PRIMARY = "runs/detect/train17/weights/best.pt"
 ALTERNATIVE_MODEL_PATHS = [
-    "/mnt/hdd1/users/20011959_son/Capstone/proneDetect/runs/detect/train15/weights/best.pt",
-    "/mnt/hdd1/users/20011959_son/Capstone/proneDetect/runs/detect/train16/weights/best.pth",
-    "/mnt/hdd1/users/20011959_son/Capstone/proneDetect/runs/detect/train15/weights/best.pth",
-    "/mnt/hdd1/users/20011959_son/Capstone/proneDetect/yolov8n.pt"  # 기본 YOLOv8 모델
+    "runs/detect/train15/weights/best.pt",
+    "runs/detect/train16/weights/best.pth",
+    "runs/detect/train15/weights/best.pth",
+    "yolov8n.pt"  # 기본 YOLOv8 모델
 ]
 CONF_THRESHOLD = 0.4  # 감지 신뢰도 임계값
 
