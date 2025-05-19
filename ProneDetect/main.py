@@ -15,12 +15,12 @@ app = FastAPI()
 
 # --- 설정값 ---
 # 실제 운영 환경에서는 환경 변수나 설정 파일을 사용하는 것이 좋습니다.
-MODEL_PATH_PRIMARY = "/mnt/hdd1/users/20011959_son/proneDetect/runs/detect/train17/weights/best.pt"
+MODEL_PATH_PRIMARY = "/mnt/hdd1/users/20011959_son/Capstone/proneDetect/runs/detect/train17/weights/best.pt"
 ALTERNATIVE_MODEL_PATHS = [
-    "/mnt/hdd1/users/20011959_son/proneDetect/runs/detect/train15/weights/best.pt",
-    "/mnt/hdd1/users/20011959_son/proneDetect/runs/detect/train16/weights/best.pth",
-    "/mnt/hdd1/users/20011959_son/proneDetect/runs/detect/train15/weights/best.pth",
-    "yolov8n.pt"  # 기본 YOLOv8 모델
+    "/mnt/hdd1/users/20011959_son/Capstone/proneDetect/runs/detect/train15/weights/best.pt",
+    "/mnt/hdd1/users/20011959_son/Capstone/proneDetect/runs/detect/train16/weights/best.pth",
+    "/mnt/hdd1/users/20011959_son/Capstone/proneDetect/runs/detect/train15/weights/best.pth",
+    "/mnt/hdd1/users/20011959_son/Capstone/proneDetect/yolov8n.pt"  # 기본 YOLOv8 모델
 ]
 CONF_THRESHOLD = 0.4  # 감지 신뢰도 임계값
 
@@ -205,4 +205,4 @@ async def api_detect_posedown(file: UploadFile = File(...)):
 # FastAPI 서버를 실행하려면 터미널에서 다음 명령어를 사용하세요:
 # uvicorn main:app --reload
 # 예: (프로젝트 루트 디렉토리에서)
-# python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000
+# python -m uvicorn main:app --reload --host localhost --port 3001
