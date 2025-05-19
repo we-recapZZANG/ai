@@ -279,7 +279,7 @@ def monitor_baby_position(
 
 # 여기에서 직접 변수를 정의하고 함수를 호출합니다 (Jupyter Notebook용)
 # 모델 경로 - 실제 모델 파일 경로로 업데이트하세요
-model_path = "/mnt/hdd1/users/20011959_son/proneDetect/runs/detect/train17/weights/best.pt"
+model_path = "model_path"
 
 # 모델 파일이 존재하는지 확인하고 대체 모델 경로 시도
 if not os.path.exists(model_path):
@@ -288,9 +288,6 @@ if not os.path.exists(model_path):
     
     # 대체 경로 시도
     alternative_paths = [
-        "/mnt/hdd1/users/20011959_son/proneDetect/runs/detect/train15/weights/best.pt",
-        "/mnt/hdd1/users/20011959_son/proneDetect/runs/detect/train16/weights/best.pth",
-        "/mnt/hdd1/users/20011959_son/proneDetect/runs/detect/train15/weights/best.pth",
         # 기본 YOLOv8 모델도 대체 옵션으로 추가
         "yolov8n.pt"
     ]
@@ -302,7 +299,7 @@ if not os.path.exists(model_path):
             break
 
 # 비디오 소스 - 웹캠(0) 또는 동영상 파일 경로
-video_source = "/mnt/hdd1/users/20011959_son/proneDetect/videos/brightmoveandturnleft.MP4"  # 웹캠 사용, 파일을 사용하려면 "파일경로.mp4"와 같이 지정
+video_source = "video_path"  # 웹캠 사용, 파일을 사용하려면 "파일경로.mp4"와 같이 지정
 
 # 이 셀을 실행하면 모니터링이 시작됩니다
 monitor_baby_position(
