@@ -152,4 +152,4 @@ async def create_upload_file(uploaded_file: UploadFile = File(...)):
 
 # FastAPI 서버 실행 방법 (터미널에서):
 # uvicorn main:app --reload
-# 예: uvicorn main:app --host 0.0.0.0 --port 3000 --reload 
+# 예: uvicorn main:app --host localhost --port 3000 --reload 
