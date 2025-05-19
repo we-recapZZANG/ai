@@ -1,0 +1,22 @@
+Fast API Server Open
+
+
+# conda run -n track --no-capture-output uvicorn movingDetect.main:app --host localhost --port 3000
+
+# conda run -n prone --no-capture-output uvicorn proneDetect.main:app --host localhost --port 3001
+
+# conda run -n zonos --no-capture-output bash ZS-TTS/run.sh
+
+
+curl Test
+
+
+# curl -X POST -F "uploaded_file=@/path/to/your/video.mp4" http://localhost:3000/upload_video/
+
+# curl -X POST -F "file=@/path/to/your/video.mp4" http://localhost:3001/detect_posedown/
+
+# curl -X POST \
+#       -F "text=안녕하세요. 테스트입니다." \
+#       -F "speaker_wav=@/path/to/your/speaker_audio.wav" \
+#       http://localhost:3002/process-audio-text/ \
+#       -o output.wav
